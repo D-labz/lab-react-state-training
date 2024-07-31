@@ -9,15 +9,24 @@ import dice6 from "..//assets/images/dice6.png";
 import React, { useState } from "react";
 
 export default function Dice() {
-  const [isClicked, setIsClicked] = useState(true);
+  const [dice, setDice] = useState(emptydice);
 
   const dices = [dice1, dice2, dice3, dice4, dice5, dice6];
-  const randomIndex = Math.floor(Math.random() * dices.length);
-  const randomDice = dices[randomIndex];
+
+  function showDice() {
+    const randomIndex = Math.floor(Math.random() * dices.length);
+    const randomDice = dices[randomIndex];
+
+    setTimeout(() => {
+      setDice(randomDice);
+    }, 1000);
+
+    setDice(emptydice);
+  }
 
   return (
     <div>
-      <img src={randomDice} />
+      <img src={dice} onClick={showDice} />
     </div>
   );
 }
